@@ -13,7 +13,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let url = NSURL(string: "https://freegeoip.net/json/")!
         
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) -> Void in
+        
+            if let urlContent = data {
+            
+                print(urlContent)
+                
+            }
+        
+        }
+        
+        task.resume()
     
     }
 
