@@ -17,9 +17,21 @@ class ViewController: UIViewController {
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) -> Void in
         
+            // convert JSON into readable content
             if let urlContent = data {
             
-                print(urlContent)
+                do {
+                    
+                let jsonResult = try NSJSONSerialization.JSONObjectWithData(urlContent, options: NSJSONReadingOptions.MutableContainers)
+                    
+                    // need to use if let and unwrap so this value is not optional
+                    print(jsonResult["city"])
+                
+                } catch {
+                
+                    print ("JSON serialization failed")
+                
+                }
                 
             }
         
